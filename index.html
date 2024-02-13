@@ -536,6 +536,8 @@
     var width = 92;
     var height = 53;
 
+    var localStoragePrefix = "smash-selective-random.";
+
     //change portrait between active and not active
     function SwitchActive(name) {
         if(characterDict.get(name)) {
@@ -671,14 +673,14 @@
     //save profile
     function SaveProfileLS(cookieName, cookieValue) {
 
-        localStorage.setItem(cookieName, JSON.stringify(Array.from(cookieValue.entries())));
+        localStorage.setItem(localStoragePrefix + cookieName, JSON.stringify(Array.from(cookieValue.entries())));
 
         //console.log(cookieName + "=" + JSON.stringify(cookieValue));
     }
 
     //get profile
     function GetProfileLS(cookieName, toSave) {
-        var cookieValue = localStorage.getItem(cookieName);
+        var cookieValue = localStorage.getItem(localStoragePrefix + cookieName);
         
         //check if the profile exists 
         if(cookieValue != null) {
@@ -707,13 +709,13 @@
         //console.log(cookieValue);
 
         if(cookieValue != null) {
-            localStorage.removeItem(cookieName);
+            localStorage.removeItem(localStoragePrefix + cookieName);
         }
     }
 
     //remove all profiles
     function RemoveAllProfilesLS() {
-        localStorage.clear();
+        Object.keys(localStorage).filter(x => x.startsWith(localStoragePrefix + 'profile')).forEach(x => localStorage.removeItem(x));
     }
 
     //change website to mobile version if on mobile
