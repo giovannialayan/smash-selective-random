@@ -2,6 +2,7 @@
   import Character from '../components/character.svelte';
   import Button from '../components/button.svelte';
   import Dropdown from '../components/dropdown.svelte';
+  import KofiButton from '../components/KofiButton.svelte';
 
   import { onMount } from 'svelte';
 
@@ -598,6 +599,10 @@
     >
       profiles
     </Dropdown>
+  </div>
+
+  <div class="my-4">
+    <KofiButton></KofiButton>
   </div>
 </div>
 
